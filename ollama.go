@@ -15,7 +15,7 @@ import (
 
 const maxErrorBodyPreview = 500
 
-var modes = []string{"Proofread", "Professional", "Casual", "Polite", "#social"}
+var modes = []string{"Proofread", "Professional", "Casual", "Polite", "#social", "L!nk3dIn"}
 
 var modePrompts = map[string]string{
 	"Proofread":    "Proofread and correct spelling/grammar only. Preserve tone, style and length exactly.",
@@ -23,6 +23,10 @@ var modePrompts = map[string]string{
 	"Casual":       "Proofread and rewrite in a relaxed, casual, conversational tone.",
 	"#social":      "Proofread and rewrite as a punchy social media post, concise, with fitting hashtags.",
 	"Polite":       "Proofread and rewrite to sound extra polite and courteous.",
+	"L!nk3dIn": "Rewrite as an over-the-top LinkedIn 'thought leadership' post: turn even the most mundane " +
+		"statement into a humble-bragging, inspirational life lesson. Use dramatic line breaks after every " +
+		"sentence, buzzwords (synergy, growth mindset, disrupt, authentic, grind), a cliffhanger hook first " +
+		"line, and end with an engagement-bait question plus a few relevant hashtags and emojis.",
 }
 
 var (
