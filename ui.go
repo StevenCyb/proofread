@@ -23,8 +23,7 @@ var (
 	borderStyle = lipgloss.NewStyle().Border(lipgloss.RoundedBorder()).Padding(0, 1)
 )
 
-const helpText = "ctrl+n/ctrl+b switch mode  ·  ctrl+p proofread  ·  ctrl+k clear  ·  " +
-	"any key resumes editing  ·  esc quit"
+const helpText = "ctrl+n/b mode · ctrl+p proofread · ctrl+k clear · ctrl+y copy · esc quit"
 
 const keyVisiblePrefix = 3
 
@@ -78,8 +77,11 @@ func (m model) View() string {
 
 	out.WriteString("\n\n")
 
-	if m.err != nil {
+	switch {
+	case m.err != nil:
 		out.WriteString(errStyle.Render(m.err.Error()) + "\n")
+	case m.rendered != "":
+		out.WriteString(helpStyle.Render("any key resumes editing") + "\n")
 	}
 
 	out.WriteString("\n" + helpStyle.Render(helpText))

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/atotto/clipboard"
 	"github.com/charmbracelet/bubbles/textarea"
 	tea "github.com/charmbracelet/bubbletea"
 )
@@ -122,6 +123,12 @@ func (m model) handleKey(msg tea.KeyMsg) (model, tea.Cmd, bool) {
 		m.input.Reset()
 		m.rendered = ""
 		m.err = nil
+
+		return m, nil, true
+	case "ctrl+y":
+		if err := clipboard.WriteAll(m.input.Value()); err != nil {
+			m.err = fmt.Errorf("copy to clipboard: %w", err)
+		}
 
 		return m, nil, true
 	}
